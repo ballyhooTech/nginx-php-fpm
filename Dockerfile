@@ -1,17 +1,17 @@
-FROM php:8.3.14-fpm-alpine3.20
+FROM php:8.3.29-fpm-alpine3.23
 
 LABEL maintainer="Ric Harvey <ric@squarecows.com>"
 LABEL maintainer="BALLYHOO Technic <technic@ballyhoo.de>"
 
-ENV php_conf /usr/local/etc/php-fpm.conf
-ENV fpm_conf /usr/local/etc/php-fpm.d/www.conf
-ENV php_vars /usr/local/etc/php/conf.d/docker-vars.ini
+ENV php_conf=/usr/local/etc/php-fpm.conf
+ENV fpm_conf=/usr/local/etc/php-fpm.d/www.conf
+ENV php_vars=/usr/local/etc/php/conf.d/docker-vars.ini
 
 ENV LUAJIT_LIB=/usr/lib
 ENV LUAJIT_INC=/usr/include/luajit-2.1
 
 # resolves #166
-ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
+ENV LD_PRELOAD="/usr/lib/preloadable_libiconv.so php"
 RUN apk add --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community gnu-libiconv
 
 
