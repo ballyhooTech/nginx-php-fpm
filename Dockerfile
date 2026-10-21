@@ -1,4 +1,4 @@
-FROM php:8.3.29-fpm-alpine3.23
+FROM amd64/php:8.3.36-fpm-alpine3.23
 
 LABEL maintainer="Ric Harvey <ric@squarecows.com>"
 LABEL maintainer="BALLYHOO Technic <technic@ballyhoo.de>"
