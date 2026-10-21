@@ -73,9 +73,9 @@ RUN apk add --no-cache --virtual .sys-deps \
     docker-php-ext-install gd && \
   # pip3 --break-system-packages install --upgrade pip && \
     docker-php-ext-install pdo_mysql mysqli pdo_sqlite pgsql pdo_pgsql exif intl xsl soap zip && \
-    pecl install -o -f xdebug && \
-    pecl install -o -f redis && \ 
-    pecl install -o -f mongodb && \
+    (n=0; until pecl install -o -f xdebug; do n=$((n+1)); [ $n -ge 30 ] && exit 1; sleep 2; done) && \
+    (n=0; until pecl install -o -f redis; do n=$((n+1)); [ $n -ge 30 ] && exit 1; sleep 2; done) && \
+    (n=0; until pecl install -o -f mongodb; do n=$((n+1)); [ $n -ge 30 ] && exit 1; sleep 2; done) && \
     echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini && \
     echo "extension=mongodb.so" > /usr/local/etc/php/conf.d/mongodb.ini && \
     echo "zend_extension=xdebug" > /usr/local/etc/php/conf.d/xdebug.ini && \
